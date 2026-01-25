@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #f0f0f0;
+  --color-text: #000000;
+  --color-card-background: #202524;
+  --color-card-foreground: #ffffff;
+  --font-family-sans: "Raleway", system-ui, sans-serif;
+}
+
+:root {
+  font-family: "Raleway", system-ui, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color: var(--color-text);
+  background-color: var(--color-background);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
