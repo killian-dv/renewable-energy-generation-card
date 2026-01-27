@@ -1,21 +1,14 @@
 import type { ComponentProps } from "react";
 import { cn } from "../lib/utils";
+import type { Item1 } from "./card-section-1";
 import { CircleGauge } from "./circle-gauge";
 
 interface Section1ItemProps extends ComponentProps<"div"> {
-  title: string;
-  value: number;
-  unit: string;
-  gaugeColor: string;
+  item: Item1;
 }
 
-export const Section1Item = ({
-  title,
-  value,
-  unit,
-  gaugeColor,
-  ...props
-}: Section1ItemProps) => {
+export const Section1Item = ({ item, ...props }: Section1ItemProps) => {
+  const { title, value, unit, gaugeColor } = item;
   // Format number with US notation (comma as thousands separator)
   const formattedValue = value.toLocaleString("en-US", {
     maximumFractionDigits: 1,

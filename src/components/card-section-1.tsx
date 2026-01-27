@@ -1,13 +1,13 @@
 import { Section1Item } from "./section-1-item";
 
-type Item = {
+export type Item1 = {
   title: string;
   value: number;
   unit: string;
   gaugeColor: string;
 };
 
-const ITEMS: Item[] = [
+const ITEMS: Item1[] = [
   {
     title: "Total Renewable Generation",
     value: 4285,
@@ -32,13 +32,7 @@ export const CardSection1 = () => {
   return (
     <div className="flex flex-col gap-2">
       {ITEMS.map((item) => (
-        <Section1Item
-          key={item.title}
-          title={item.title}
-          value={item.value}
-          unit={item.unit}
-          gaugeColor={item.gaugeColor}
-        />
+        <Section1Item key={item.title} item={item} />
       ))}
     </div>
   );
