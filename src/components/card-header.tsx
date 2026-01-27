@@ -3,7 +3,7 @@ import { CardTitleHeader } from "./card-title-header";
 
 export const CardHeader = () => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col gap-1">
       <CardIconHeader />
       <CardTitleHeader />
     </div>
