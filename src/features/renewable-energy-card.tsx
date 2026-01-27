@@ -1,6 +1,7 @@
 import { Card } from "../components/card";
 import { CardHeader } from "../components/card-header";
 import { CardSection1 } from "../components/card-section-1";
+import { CardSection2 } from "../components/card-section-2";
 import { CardSectionSeparator } from "../components/card-section-separator";
 
 export const RenewableEnergyCard = () => {
@@ -9,6 +10,8 @@ export const RenewableEnergyCard = () => {
       <CardHeader />
       <CardSectionSeparator />
       <CardSection1 />
+      <CardSectionSeparator />
+      <CardSection2 />
     </Card>
   );
 };
