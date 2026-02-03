@@ -5,6 +5,7 @@ import {
   WindPowerIcon,
 } from "@hugeicons/core-free-icons";
 import type { IconSvgElement } from "@hugeicons/react";
+import { motion } from "motion/react";
 import { GridSection2 } from "./grid-section-2";
 import { Section2Item } from "./section-2-item";
 
@@ -47,17 +48,49 @@ const ITEMS: Item2[] = [
   },
 ];
 
+const scalePopAnimation = {
+  initial: { scale: 0, opacity: 0 },
+  animate: { scale: [0, 1.05, 1], opacity: [0, 1, 1] },
+};
+
+const bottomTextAnimation = {
+  initial: { opacity: 0, y: 12 },
+  animate: { opacity: 1, y: 0 },
+};
+
+const ITEM_DELAY = 0.12;
+const SCALE_DURATION = 0.5;
+const BOTTOM_TEXT_DELAY = 0.6 + (ITEMS.length - 1) * ITEM_DELAY;
+
 export const CardSection2 = () => {
   return (
     <div className="flex flex-col gap-4">
       <GridSection2>
-        {ITEMS.map((item) => (
-          <Section2Item key={item.title} item={item} />
+        {ITEMS.map((item, index) => (
+          <Section2Item
+            key={item.title}
+            item={item}
+            {...scalePopAnimation}
+            transition={{
+              duration: SCALE_DURATION,
+              delay: 0.6 + index * ITEM_DELAY,
+              times: [0, 0.5, 1],
+              ease: ["easeInOut", "easeInOut"],
+            }}
+          />
         ))}
       </GridSection2>
-      <p className="text-text-muted font-semibold text-sm">
+      <motion.p
+        className="text-text-muted font-semibold text-sm"
+        {...bottomTextAnimation}
+        transition={{
+          duration: 0.28,
+          delay: BOTTOM_TEXT_DELAY,
+          ease: "easeOut",
+        }}
+      >
         Expected generation increase based on weather prediction
-      </p>
+      </motion.p>
     </div>
   );
 };

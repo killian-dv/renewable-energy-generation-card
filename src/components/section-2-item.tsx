@@ -1,31 +1,36 @@
 import type { IconSvgElement } from "@hugeicons/react";
 import { HugeiconsIcon } from "@hugeicons/react";
+import { motion } from "motion/react";
 import type { ComponentProps } from "react";
+import { useCountUpValue } from "../hooks/useCountUpValue";
+import { getDelaySeconds } from "../lib/transition";
 import type { Item2 } from "./card-section-2";
 
-interface Section2ItemProps extends ComponentProps<"div"> {
+type Section2ItemProps = ComponentProps<typeof motion.div> & {
   item: Item2;
-}
+};
 
-export const Section2Item = ({ item, ...props }: Section2ItemProps) => {
+export const Section2Item = ({ item, transition, ...props }: Section2ItemProps) => {
   const { title, value, unit, icon, iconColor } = item;
-  // Format number with US notation (comma as thousands separator)
-  const formattedValue = value.toLocaleString("en-US", {
-    maximumFractionDigits: 1,
+  const displayValue = useCountUpValue(value, getDelaySeconds(transition));
+
+  const formattedValue = displayValue.toLocaleString("en-US", {
+    maximumFractionDigits: Number.isInteger(value) ? 0 : 1,
   });
 
   return (
-    <div
+    <motion.div
       className="relative flex flex-col gap-1 bg-black rounded-lg p-3 overflow-hidden"
+      transition={transition}
       {...props}
     >
-      <p className="text-[26px] font-bold leading-none lining-nums">
+      <p className="text-[26px] font-bold leading-none lining-nums tabular-nums">
         {formattedValue}
         <sup className="text-text-muted text-xs leading-none font-medium">{` ${unit}`}</sup>
       </p>
       <p className="text-text-muted font-semibold text-sm">{title}</p>
       <ItemIcon icon={icon} iconColor={iconColor} />
-    </div>
+    </motion.div>
   );
 };
 
